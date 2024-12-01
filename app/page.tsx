@@ -1,101 +1,46 @@
-import Image from "next/image";
+import React from 'react';
+import kingdom from '../public/kingdom.json';
 
-export default function Home() {
+const numbers = [
+  381, 248, 1, 279, 370, 7, 300, 292, 210, 193, 417, 342, 412, 289, 266, 344, 81, 
+  341, 167, 231, 219, 378, 87, 28, 403, 334, 415, 93, 328, 77, 404, 286, 346, 49, 
+  228, 361, 55, 382, 357, 74, 249, 68, 312, 71, 335, 85, 327, 120, 153, 209, 57, 
+  354, 152, 6, 110, 295, 172, 406, 161, 63, 293, 69, 17, 313, 196, 366, 200, 4, 
+  365, 188, 359, 114, 338, 21, 131, 32, 34, 156, 418, 107, 337, 389, 23, 208, 169, 
+  106, 51, 29, 336, 89, 62, 398, 217, 291, 141, 253, 97, 31, 287, 269, 204, 256, 
+  171, 173, 142, 399, 2, 379, 216, 66, 41, 123, 40, 283, 160, 140, 185, 144, 343, 
+  222, 257, 390, 178, 50, 294, 229, 139, 237, 355, 322, 316, 64, 76, 25, 91, 352, 
+  67, 90, 72, 13, 288, 181, 148, 373, 239, 12, 83, 75, 369, 360, 192, 143, 413, 16, 
+  296, 284, 52, 88, 116, 95, 146, 409, 136, 267, 368, 137, 5, 408, 227, 377, 395, 
+  273, 234, 384, 402, 0, 138, 410, 314, 151, 104, 358, 61, 347, 147, 264, 265, 135, 
+  232, 307, 102, 199, 202, 301, 150, 207, 201, 205, 374, 281, 180, 194, 36, 255, 
+  98, 315, 221, 251, 119, 340, 44, 394, 43, 396, 101, 214, 117, 218, 213, 58, 111, 
+  127, 304, 159, 308, 238, 30, 46, 391, 419, 184, 115, 132, 174, 320, 191, 268, 
+  252, 411, 362, 82, 351, 350, 128, 103, 333, 60, 18, 134, 92, 276, 175, 326, 168, 
+  303, 367, 416, 15, 78, 329, 272, 230, 306, 392, 186, 388, 37, 22, 27, 182, 285, 
+  19, 309, 246, 203, 33, 215, 197, 162, 371, 79, 3, 310, 383, 245, 39, 177, 195, 
+  9, 11, 198, 99, 247, 26, 206, 261, 393, 48, 20, 223, 330, 271, 126, 250, 240, 56, 
+  235, 397, 349, 270, 386, 244, 54, 179, 297, 225, 356, 149, 236, 323, 242, 226, 
+  380, 212, 414, 45, 105, 73, 10, 47, 14, 125, 170, 318, 311, 385, 24, 109, 241, 
+  38, 157, 8, 275, 130, 324, 290, 331, 100, 339, 298, 145, 400, 124, 113, 302, 96, 
+  263, 190, 259, 376, 154, 325, 176, 35, 189, 375, 121, 387, 299, 332, 317, 108, 
+  118, 262, 254, 211, 305, 53, 405, 129, 84, 70, 133, 348, 86, 187, 277, 122, 80, 
+  282, 233, 42, 353, 220, 319, 165, 274, 258, 280, 401, 59, 94, 321, 407, 158, 224, 
+  364, 163, 155, 243, 260, 183, 363, 345, 278, 166, 112, 164, 65, 372
+];
+
+
+const page = () => {
+
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="flex-row">
+      <input></input>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+
     </div>
-  );
+  )
 }
+
+export default page;
