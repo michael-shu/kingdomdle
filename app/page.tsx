@@ -1,7 +1,7 @@
 import React from 'react';
-//import kingdom from '../public/kingdom.json';
+import kingdom from '../public/kingdom.json';
 
-/*
+
 const numbers = [
   381, 248, 1, 279, 370, 7, 300, 292, 210, 193, 417, 342, 412, 289, 266, 344, 81, 
   341, 167, 231, 219, 378, 87, 28, 403, 334, 415, 93, 328, 77, 404, 286, 346, 49, 
@@ -28,7 +28,18 @@ const numbers = [
   118, 262, 254, 211, 305, 53, 405, 129, 84, 70, 133, 348, 86, 187, 277, 122, 80, 
   282, 233, 42, 353, 220, 319, 165, 274, 258, 280, 401, 59, 94, 321, 407, 158, 224, 
   364, 163, 155, 243, 260, 183, 363, 345, 278, 166, 112, 164, 65, 372
-];*/
+];
+
+const getIndexOfTheDay = (entries: number[]) => {
+  const start = new Date('2024-12-01'); // Epoch start date
+  const today = new Date();
+  const diff = Math.floor((today.getTime() - start.getTime()) / (1000 * 60 * 60 * 24)); // Days since epoch
+  const index = diff % entries.length; // Wrap around if needed
+  return entries[index];
+};
+
+const indexOfTheDay = getIndexOfTheDay(numbers);
+const char = kingdom.data[indexOfTheDay];
 
 
 const page = () => {
@@ -36,10 +47,11 @@ const page = () => {
 
   return (
     <div className="flex-row">
-      <input></input>
-
-
-
+      <input>
+      
+      </input>
+      {char.name}
+      {char.url}
     </div>
   )
 }
