@@ -26,7 +26,7 @@ const Results = () => {
 
     const grabLimit = (guesses: UserData["guesses"]) => {
         let max = -1;
-        for (let key of Object.keys(guesses)) {
+        for (const key of Object.keys(guesses)) {
             if (guesses[key as keyof GuessesType] > max) {
                 max = guesses[key as keyof GuessesType];
             }
