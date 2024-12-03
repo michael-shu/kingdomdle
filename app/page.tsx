@@ -1,6 +1,8 @@
 import React from 'react';
 import kingdom from '../public/kingdom.json';
-
+import * as fs from 'fs';
+import Game from './components/Game';
+import Image from 'next/image';
 
 const numbers = [
   381, 248, 1, 279, 370, 7, 300, 292, 210, 193, 417, 342, 412, 289, 266, 344, 81, 
@@ -38,22 +40,67 @@ const getIndexOfTheDay = (entries: number[]) => {
   return entries[index];
 };
 
-const indexOfTheDay = getIndexOfTheDay(numbers);
-const char = kingdom.data[indexOfTheDay];
+const charOfTheDay = () => {
+  const indexOfTheDay = getIndexOfTheDay(numbers);
+  const char = kingdom.data[indexOfTheDay];
+  return char;
+}
+
+const blurred_images = () => {
+  const char = charOfTheDay();
+  const char_url = char.url.match(/wiki\/(.+)/);
+  if(!char_url) {
+    console.error("error reading from files");
+    return;
+  }
+
+
+  const char_name = decodeURIComponent(char_url[1]);
+  const images = fs.readdirSync('./public/blurred_images/' + char_name);
+
+  const sortedImages = images.sort((a, b) => {
+    // If one of the files is 'Ma_Kou.png', place it at the end
+    if (a === 'Ma_Kou.png') return 1;
+    if (b === 'Ma_Kou.png') return -1;
+  
+    // Extract numbers for `blur` files
+    const numA = parseInt(a.match(/_blur_(\d+)/)?.[1] || '0', 10);
+    const numB = parseInt(b.match(/_blur_(\d+)/)?.[1] || '0', 10);
+  
+    // Sort by the numbers in descending order
+    return numB - numA;
+  });
+
+  return sortedImages;
+
+}
+
 
 
 const page = () => {
+  const images = blurred_images();
+
+  const char = charOfTheDay();
+  const char_url = char.url.match(/wiki\/(.+)/);
+  if(!char_url) {
+    console.error("error reading from files");
+    return;
+  }
+
+  const names = kingdom.data.map((character) => {
+      return character.name;
+  })
+  //console.log(names);
 
 
-  return (
-    <div className="flex-row">
-      <input>
-      
-      </input>
-      {char.name}
-      {char.url}
-    </div>
-  )
+    return (
+      <div className="flex-row justify-items-center">
+        <Image alt="banner" src="/Banner.png" width="500" height="150"/>
+        {images &&
+            <Game images={images} url={char.url} name={char_url[1]} names={names}/>
+        }
+      </div>
+    );
 }
 
 export default page;
