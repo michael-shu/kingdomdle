@@ -90,13 +90,13 @@ const Results = () => {
             <div className="grid grid-cols-2 gap-4 p-4">
                 {/* Current Streak */}
                 <div className="flex flex-col items-center justify-center bg-slate-300 p-4 rounded-lg shadow">
-                    <h1 className="text-xl font-bold text-blue-600">Current Streak</h1>
+                    <h1 className="text-xl font-bold text-black">Current Streak</h1>
                     <p className="text-3xl font-semibold text-gray-800">{data.currentStreak}</p>
                 </div>
 
                 {/* Max Streak */}
                 <div className="flex flex-col items-center justify-center bg-slate-300 p-4 rounded-lg shadow">
-                    <h1 className="text-xl font-bold text-green-600">Max Streak</h1>
+                    <h1 className="text-xl font-bold text-black">Max Streak</h1>
                     <p className="text-3xl font-semibold text-gray-800">{data.maxStreak}</p>
                 </div>
             </div>

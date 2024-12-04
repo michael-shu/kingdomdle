@@ -23,7 +23,7 @@ const Modal = ({ result, url, image, name }: { result: string; url: string; imag
                         <h2 className="text-2xl font-bold mb-4">Better luck next time</h2>
                     )}
                     <h2 className="text-xl font-bold text-yellow-400 drop-shadow-[0_0_5px_rgba(255,215,0,0.7)] text-center inline-block px-2 rounded-md relative">
-                        It&apos;s {name}!
+                        It&apos;s <a href={url} className="hover:text-yellow-800">{name}!</a>
                     </h2>
                     <Results/>
 

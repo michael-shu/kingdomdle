@@ -96,6 +96,9 @@ const page = () => {
     return (
       <div className="flex-row justify-items-center">
         <Image alt="banner" src="/Banner.png" width="500" height="150"/>
+        <div className="text-3xl md:text-7xl font-extrabold pb-10 text-transparent bg-clip-text bg-amber-400 drop-shadow-lg">
+          Kingdomle
+          </div>
         {images &&
             <Game images={images} url={char.url} name={char_url[1]} names={names}/>
         }
