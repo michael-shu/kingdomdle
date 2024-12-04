@@ -183,7 +183,9 @@ const Game = ({ images, name, url, names }: { images: string[], name: string, ur
     return (
         <div className="flex-col justify-items-center">
             {modal &&
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-500 text-black p-8 rounded-lg shadow-2xl w-3/4 max-w-md">
+                <div className="absolute top-1/2 left-1/2 
+                transform -translate-x-1/2 -translate-y-1/2 bg-gray-500
+                 text-black p-8 rounded-lg shadow-2xl w-3/4 max-w-md z-50">
                     {/* Close Button */}
                     <div className="flex justify-end">
                         <button
