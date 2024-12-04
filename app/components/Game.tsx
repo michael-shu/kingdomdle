@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Toastify from 'toastify-js';
 import Modal from './Modal';
 
@@ -33,6 +33,33 @@ const Game = ({ images, name, url, names }: { images: string[], name: string, ur
     const [result, setResult] = useState("");
 
     const [modal, setModal] = useState(true);
+
+    useEffect(() => {
+        const localData = localStorage.getItem('kingdomle-stats');
+
+        
+        //If local data exists, that means they've played before.
+        if (localData !== null) {
+            
+            const userStorage = JSON.parse(localData);
+
+            const currentDate = new Date();
+            const storedDate = new Date(userStorage.timeStamp);
+
+            if (
+                currentDate.getFullYear() === storedDate.getFullYear() &&
+                storedDate.getMonth() === storedDate.getMonth() &&
+                storedDate.getDate() === storedDate.getDate()
+            ) {
+                if(userStorage.currentStreak >= 1) {
+                    setResult("success");
+                } else {
+                    setResult("failure");
+                }
+                setFinished(true);
+            }
+        }
+    });
 
     const submitGuess = () => {
         if (names.includes(charName)) {
@@ -156,39 +183,39 @@ const Game = ({ images, name, url, names }: { images: string[], name: string, ur
     return (
         <div className="flex-col justify-items-center">
             {modal &&
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-500 text-black p-8 rounded-lg shadow-2xl w-3/4 max-w-md">
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-500 text-black p-8 rounded-lg shadow-2xl w-3/4 max-w-md">
                     {/* Close Button */}
                     <div className="flex justify-end">
-                      <button
-                        className="text-red-500 font-bold text-lg hover:text-red-700 transition duration-300"
-                        onClick={() => setModal(false)}
-                      >
-                        ×
-                      </button>
+                        <button
+                            className="text-red-500 font-bold text-lg hover:text-red-700 transition duration-300"
+                            onClick={() => setModal(false)}
+                        >
+                            ×
+                        </button>
                     </div>
-                  
+
                     {/* Title */}
                     <h2 className="text-2xl font-bold text-center text-white mb-4">
-                      Welcome to Kingdomle!
+                        Welcome to Kingdomle!
                     </h2>
-                  
+
                     {/* Content */}
                     <p className="text-center leading-relaxed">
-                      This is <span className="font-bold text-white">Kingdomle</span>, a
-                      guessing game for the famous manga <span className="italic">Kingdom</span> by Japanese Manga Artist Yasuhisa Hara.
-                      You have six guesses to figure out the manga character in the blurred
-                      image. Each successive guess will unblur the image a little more. Good
-                      luck!
+                        This is <span className="font-bold text-white">Kingdomle</span>, a
+                        guessing game for the famous manga <span className="italic">Kingdom</span> by Japanese Manga Artist Yasuhisa Hara.
+                        You have six guesses to figure out the manga character in the blurred
+                        image. Each successive guess will unblur the image a little more. Good
+                        luck!
                     </p>
-                  </div>
-                  
+                </div>
+
             }
 
             {finished ?
                 (<Modal result={result}
                     url={url}
                     image={"/blurred_images/" + name + "/" + images[images.length - 1]}
-                    name={charName} />)
+                    name={name.replace('_', ' ')} />)
                 :
                 (
                     <>
