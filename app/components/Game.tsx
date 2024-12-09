@@ -205,6 +205,7 @@ const Game = ({ images, name, url, names }: { images: string[], name: string, ur
                     <p className="text-center leading-relaxed">
                         This is <span className="font-bold text-white">Kingdomle</span>, a
                         guessing game for the famous manga <span className="italic">Kingdom</span> by Japanese Manga Artist Yasuhisa Hara.
+                        <br/>
                         You have six guesses to figure out the manga character in the blurred
                         image. Each successive guess will unblur the image a little more. Good
                         luck!
