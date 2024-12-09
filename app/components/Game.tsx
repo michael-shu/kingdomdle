@@ -48,8 +48,8 @@ const Game = ({ images, name, url, names }: { images: string[], name: string, ur
 
             if (
                 currentDate.getFullYear() === storedDate.getFullYear() &&
-                storedDate.getMonth() === storedDate.getMonth() &&
-                storedDate.getDate() === storedDate.getDate()
+                currentDate.getMonth() === storedDate.getMonth() &&
+                currentDate.getDay() === storedDate.getDay()
             ) {
                 if(userStorage.currentStreak >= 1) {
                     setResult("success");
